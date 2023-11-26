@@ -2,6 +2,7 @@
   "name": "evgenij-vy/filter-extender",
   "description": "description",
   "license": "proprietary",
+  "type": "symfony-bundle",
   "authors": [
     {
       "name": "Evgen Yurchenko",
@@ -9,6 +10,7 @@
     }
   ],
   "require": {
+    "php": ">=7.4"
   },
   "autoload": {
     "psr-4": {"EvgenijVY\\FilterExtender\\": ""}
