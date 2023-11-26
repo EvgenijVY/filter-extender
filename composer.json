@@ -1,7 +1,7 @@
 {
   "name": "evgenij-vy/filter-extender",
-  "description": "description",
-  "license": "proprietary",
+  "description": "API Platform bundle for extend features of #ApiFilter",
+  "license": "MIT",
   "type": "symfony-bundle",
   "minimum-stability": "stable",
   "authors": [
@@ -12,7 +12,8 @@
   ],
   "require": {
     "php": ">=7.4",
-    "symfony/framework-bundle": "^5.4 || ^6.0"
+    "symfony/framework-bundle": "^5.4 || ^6.0",
+    "api-platform/core": "^2.2 || ^3.0"
   },
   "autoload": {
     "psr-4": {"EvgenijVY\\FilterExtender\\": ""}
