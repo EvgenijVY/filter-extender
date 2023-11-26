@@ -1,0 +1,17 @@
+{
+  "name": "evgenij-vy/filter-extender",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Evgen Yurchenko",
+      "email": "evgenijvy@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {"EvgenijVY\\FilterExtender\\": ""}
+  }
+}
