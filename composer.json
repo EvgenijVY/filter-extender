@@ -3,6 +3,7 @@
   "description": "description",
   "license": "proprietary",
   "type": "symfony-bundle",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Evgen Yurchenko",
