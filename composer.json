@@ -3,6 +3,7 @@
   "description": "description",
   "license": "proprietary",
   "type": "symfony-bundle",
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Evgen Yurchenko",
@@ -10,7 +11,8 @@
     }
   ],
   "require": {
-    "php": ">=7.4"
+    "php": ">=7.4",
+    "symfony/framework-bundle": "^5.4 || ^6.0"
   },
   "autoload": {
     "psr-4": {"EvgenijVY\\FilterExtender\\": ""}
