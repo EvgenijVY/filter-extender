@@ -1,0 +1,16 @@
+services:
+  EvgenijVY\FilterExtender\Service\OperationService:
+    autowire: true
+    autoconfigure: true
+  EvgenijVY\FilterExtender\Service\FiltersResourceMetadataCollectionFactoryDecoratorInjector:
+    decorates: 'api_platform.metadata.resource.metadata_collection_factory'
+    decoration_priority: 190
+    arguments:
+      - '@EvgenijVY\FilterExtender\Service\OperationService'
+      - '@.inner'
+  EvgenijVY\FilterExtender\Service\FiltersResourceMetadataCollectionFactoryDecoratorListener:
+    decorates: 'api_platform.metadata.resource.metadata_collection_factory'
+    decoration_priority: 210
+    arguments:
+      - '@EvgenijVY\FilterExtender\Service\OperationService'
+      - '@.inner'
