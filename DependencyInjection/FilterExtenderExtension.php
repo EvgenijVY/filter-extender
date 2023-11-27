@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace EvgenijVY\FilterExtender\DependencyInjection;
 
-use EvgenijVY\FilterExtender\Service\FiltersResourceMetadataCollectionFactoryDecorator;
+use EvgenijVY\FilterExtender\Service\FiltersResourceMetadataCollectionFactoryDecoratorInjector;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;

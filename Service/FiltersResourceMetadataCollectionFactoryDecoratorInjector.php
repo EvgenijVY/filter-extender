@@ -4,35 +4,29 @@ declare(strict_types=1);
 
 namespace EvgenijVY\FilterExtender\Service;
 
-use ApiPlatform\Metadata\Exception\ResourceClassNotFoundException;
 use ApiPlatform\Metadata\Resource\Factory\ResourceMetadataCollectionFactoryInterface;
 use ApiPlatform\Metadata\Resource\ResourceMetadataCollection;
 
-class FiltersResourceMetadataCollectionFactoryDecorator implements ResourceMetadataCollectionFactoryInterface
+class FiltersResourceMetadataCollectionFactoryDecoratorInjector implements ResourceMetadataCollectionFactoryInterface
 {
     public function __construct(
-        private readonly ?ResourceMetadataCollectionFactoryInterface $decorated = null
+        private OperationService $operationService,
+        private ?ResourceMetadataCollectionFactoryInterface $decorated = null
     )
     {
     }
 
     public function create(string $resourceClass): ResourceMetadataCollection
     {
-        try {
-            $reflectionClass = new \ReflectionClass($resourceClass);
-        } catch (\ReflectionException) {
-            throw new ResourceClassNotFoundException(sprintf('Resource "%s" not found.', $resourceClass));
-        }
-
         $resourceMetadataCollection = is_null($this->decorated) ?
-            new ResourceMetadataCollection($resourceClass) :
-            $this->decorated->create($resourceClass);
+            new ResourceMetadataCollection($resourceClass) : $this->decorated->create($resourceClass);
 
         foreach ($resourceMetadataCollection as $i => $resource) {
             $needUpdate = false;
             foreach ($operations = $resource->getOperations() ?? [] as $operationName => $operation) {
-                if (!is_null($operation->getFilters())) {
-                    $operations->add($operationName, $operation->withFilters(array_unique($operation->getFilters())));
+                $filters = $this->operationService->gatOperationFilters($operationName);
+                if (!is_null($filters)) {
+                    $operations->add($operationName, $operation->withFilters(array_unique($filters)));
                     $needUpdate = true;
                 }
             }
@@ -42,10 +36,9 @@ class FiltersResourceMetadataCollectionFactoryDecorator implements ResourceMetad
 
             $needUpdate = false;
             foreach ($graphQlOperations = $resource->getGraphQlOperations() ?? [] as $operationName => $operation) {
-                if (!is_null($operation->getFilters())) {
-                    $graphQlOperations[$operationName] = $operation->withFilters(
-                        array_unique($operation->getFilters())
-                    );
+                $filters = $this->operationService->gatOperationFilters($operationName);
+                if (!is_null($filters)) {
+                    $graphQlOperations[$operationName] = $operation->withFilters(array_unique($filters));
                     $needUpdate = true;
                 }
             }

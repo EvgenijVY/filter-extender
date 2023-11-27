@@ -1,5 +1,0 @@
-services:
-  EvgenijVY\FilterExtender\Service\FiltersResourceMetadataCollectionFactoryDecorator:
-    decorates: 'api_platform.metadata.resource.metadata_collection_factory'
-    decoration_priority: 190
-    arguments: ['@.inner']
